@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Route } from "react-router-dom";
+import Login from "./components/login";
+import Game from "./components/game";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState("");
+  const [qAndA, setQAndA] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/questions/")
+      .then((r) => r.json())
+      .then((qAndA) => setQAndA(qAndA));
+  }, []);
+
+  // const highestRatedQuestion = dataSet.map((data) => Math.max(data.rating))
+
+  const changeUser = (user) => {
+    setCurrentUser(user);
+  };
+
+  console.log(qAndA);
+
+  // setError(error);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {currentUser !== "" ? (
+        <Route exact path="/game">
+          <Game qAndA={qAndA} currentUser={currentUser} />
+        </Route>
+      ) : (
+        <Route exact path="/">
+          <Login changeUser={changeUser} />
+        </Route>
+      )}
     </div>
   );
 }
