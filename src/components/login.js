@@ -2,28 +2,35 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function Login({ changeUser }) {
-  const [userLogin, setUserLogin] = useState({ username: "", password: "" });
+  const [userLogin, setUserLogin] = useState({
+    username: "",
+    password: "",
+  });
+
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e.target.value);
 
-    fetch("http://localhost:4000/login")
+    fetch(`http://localhost:4000/login/`)
       .then((r) => r.json())
       .then((data) => {
         setUserLogin(data);
-        console.log(data[0]);
+        const currentUser = data.find(
+          (user) => user.username === userLogin.username
+        );
+        console.log(currentUser);
         if (
-          userLogin.username === data[0].username &&
-          userLogin.password === data[0].password
+          userLogin.username === currentUser.username &&
+          userLogin.password === currentUser.password
         ) {
-          changeUser(userLogin);
+          changeUser(currentUser);
           console.log("Success");
           history.push(`/game`);
         } else {
           console.log("Fail");
-          history.push(`/login`);
+          history.push(`/`);
         }
       });
   };

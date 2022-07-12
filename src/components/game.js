@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CommentForm from "./commentForm";
 
-function Game({ qAndA, currentUser }) {
+function Game({ higherRatedQuestion, currentUser }) {
   const initialValue = {
     firstBox: "",
     secondBox: "",
@@ -9,15 +9,20 @@ function Game({ qAndA, currentUser }) {
   };
 
   const [word, setWord] = useState(initialValue);
+  const [isCorrect, setIsCorrect] = useState(false);
+  const { prompt, answers } = higherRatedQuestion;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(word.firstBox);
-    console.log(qAndA.answers[0]);
-
-    if (word.firstBox === qAndA.answers[0].toUpperCase()) {
-      console.log("Right!!");
+    if (
+      word.firstBox.toUpperCase() === answers[0].toUpperCase() &&
+      word.secondBox.toUpperCase() === answers[1].toUpperCase() &&
+      word.thirdBox.toUpperCase() === answers[2].toUpperCase()
+    ) {
+      console.log("You're Right!!");
+      setIsCorrect(!isCorrect);
+    } else {
+      console.log("Try Again");
     }
     setWord(initialValue);
   };
@@ -29,7 +34,7 @@ function Game({ qAndA, currentUser }) {
   return (
     <>
       <form className="" onSubmit={handleSubmit}>
-        <h2>Game</h2>
+        <h2>{prompt}</h2>
         <input
           maxLength={1}
           type="text"
@@ -55,9 +60,14 @@ function Game({ qAndA, currentUser }) {
         />
         <input type="submit" id="mySubmit" value="Go" />
       </form>
-      <div>
-        <CommentForm qAndA={qAndA} currentUser={currentUser} />
-      </div>
+      {isCorrect ? (
+        <div>
+          <CommentForm
+            higherRatedQuestion={higherRatedQuestion}
+            currentUser={currentUser}
+          />
+        </div>
+      ) : null}
     </>
   );
 }
