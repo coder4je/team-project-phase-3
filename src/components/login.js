@@ -51,8 +51,12 @@ function Login({ changeUser }) {
 
   return (
     <div>
+      
+      <img className = "drawing" src="https://mariasplace.com/wp-content/uploads/2019/04/Hangman-game-played.jpg" />
       <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2>Login
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bubblegum+Sans" />
+        </h2>
         <div className="form-group">
           <label htmlFor="login" value="username">
             Username:
@@ -66,8 +70,8 @@ function Login({ changeUser }) {
             autoFocus={true}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
+        <div className="form-group1">
+          <label htmlFor="password">Password:</label>
           <br />
           <input
             type="password"
