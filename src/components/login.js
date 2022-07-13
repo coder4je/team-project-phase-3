@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Signup from "./signup";
 
 function Login({ changeUser }) {
   const [userLogin, setUserLogin] = useState({
     username: "",
     password: "",
   });
+  const [isSignup, setIsSignup] = useState(false);
 
   const history = useHistory();
 
@@ -42,12 +44,17 @@ function Login({ changeUser }) {
   const handleChangePassword = (e) => {
     setUserLogin({ ...userLogin, password: e.target.value });
   };
+
+  const onClick = (e) => {
+    setIsSignup(!isSignup);
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="form-group">
-          <label htmlFor="login" value="Username">
+          <label htmlFor="login" value="username">
             Username:
           </label>
           <br />
@@ -71,6 +78,8 @@ function Login({ changeUser }) {
         </div>
         <input type="submit" value="Login" />
       </form>
+      <button onClick={onClick}>Sign up</button>
+      {isSignup ? <Signup /> : null}
     </div>
   );
 }

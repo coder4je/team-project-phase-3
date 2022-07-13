@@ -46,6 +46,11 @@
       "id": 3,
       "username": "3",
       "password": "3"
+    },
+    {
+      "username": "user1",
+      "password": "password1",
+      "id": 4
     }
   ],
   "comments": [
@@ -69,6 +74,20 @@
       "questions_id": 1,
       "login_id": 2,
       "id": 3
+    },
+    {
+      "body": "not too bad",
+      "rating": "2",
+      "questions_id": 1,
+      "login_id": 1,
+      "id": 4
+    },
+    {
+      "body": "good",
+      "rating": "3",
+      "questions_id": 1,
+      "login_id": 1,
+      "id": 5
     }
   ]
 }

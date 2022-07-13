@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Login from "./components/login";
 import Game from "./components/game";
 import CommentForm from "./components/commentForm";
@@ -55,6 +55,14 @@ function App() {
 
   return (
     <div className="App">
+      {/* <Switch>
+        <Route path="/">
+          <Login />
+        </Route>
+        <Route path="/game">
+          <Game />
+        </Route>
+      </Switch> */}
       {currentUser === "" ? (
         <Route exact path="/">
           <Login changeUser={changeUser} />

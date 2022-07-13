@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CommentForm from "./commentForm";
+import { Redirect } from "react-router-dom";
 
 function Game({ higherRatedQuestion, currentUser }) {
   const initialValue = {
@@ -29,6 +30,10 @@ function Game({ higherRatedQuestion, currentUser }) {
 
   const handleChange = (e) => {
     setWord({ ...word, [e.target.name]: e.target.value.toUpperCase() });
+  };
+
+  const onClickNext = (e) => {
+    return <Redirect to="/game" />;
   };
 
   return (
@@ -66,6 +71,7 @@ function Game({ higherRatedQuestion, currentUser }) {
             higherRatedQuestion={higherRatedQuestion}
             currentUser={currentUser}
           />
+          <button onClick={onClickNext}>NEXT</button>
         </div>
       ) : null}
     </>
