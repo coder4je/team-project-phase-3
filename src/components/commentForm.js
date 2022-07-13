@@ -5,18 +5,19 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
   const [selectedNumber, setSelectedNumber] = useState(0);
   const [currentComment, setCurrentComment] = useState("");
   const [isEditMode, setIsEditMode] = useState("");
-  const [latestComment, setLatestComment] = useState([]);
-  const { id } = higherRatedQuestion;
+  const [currentId, setCurrentId] = useState("");
 
   // Get Comment!!
 
   useEffect(() => {
-    fetch("http://localhost:4000/comments")
+    fetch("http://localhost:9292/comment")
       .then((r) => r.json())
-      .then((data) => setLatestComment(data));
+      .then((comment) => {
+        const id = comment.map((c) => c.id);
+        setCurrentId(id.pop());
+      });
   }, []);
-
-  console.log(latestComment);
+  console.log(currentId);
 
   // Edit Comment!!
 
@@ -33,22 +34,26 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
 
   const onSubmitEdit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted");
-    // const currentUserId = currentUser.id;
-    fetch(`http://localhost:4000/comments/${latestComment.length + 1}`, {
+    fetch(`http://localhost:9292/comment/${currentId + 1}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({ body: currentComment }),
-    }).then((r) => r.json());
+    }).then((r) => {
+      if (!r.ok) {
+        throw new Error(`Error status: ${r.status}`);
+      }
+      return r.json();
+    });
 
     setIsEditMode(!isEditMode);
+    console.log("Form Submitted");
   };
 
   // Delete comment
   const onDelete = (e) => {
-    fetch(`http://localhost:4000/comments/${latestComment.length + 1}`, {
+    fetch(`http://localhost:9292/comment/${currentId + 1}`, {
       method: "DELETE",
     })
       .then((r) => r.json())
@@ -71,8 +76,10 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
 
     setCurrentComment(reviews);
 
-    console.log("Form Submitted");
-    fetch("http://localhost:4000/comments/", {
+    console.log(reviews);
+    console.log(selectedNumber);
+
+    fetch("http://localhost:9292/comment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -80,11 +87,12 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
       body: JSON.stringify({
         body: reviews,
         rating: selectedNumber,
-        questions_id: id,
-        login_id: currentUser.id,
+        game_id: higherRatedQuestion.id,
+        user_id: currentUser.id,
       }),
     });
     setReviews("");
+    console.log("Form Submitted");
   };
   return (
     <>
@@ -118,7 +126,7 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
         </form>
       </div>
       <div>
-        <h3>User: {currentUser.username}</h3>
+        <h3>User: {currentUser.user_name}</h3>
         <h4>#: {currentUser.id}</h4>
         <h4>Comment</h4>
         <p> {currentComment}</p>

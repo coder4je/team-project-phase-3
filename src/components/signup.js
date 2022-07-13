@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Signup() {
   const [signup, setSignup] = useState({
-    username: "",
+    user_name: "",
     password: "",
   });
-  console.log(signup);
+  const history = useHistory();
 
   function handleChange(e) {
     setSignup({
       ...signup,
-      username: e.target.value,
+      user_name: e.target.value,
     });
   }
 
@@ -25,17 +26,18 @@ function Signup() {
     e.preventDefault();
     console.log("Sign up Submitted");
 
-    fetch(`http://localhost:4000/login/`, {
+    fetch(`http://localhost:9292/user`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        username: signup.username,
+        user_name: signup.user_name,
         password: signup.password,
       }),
     });
-    setSignup({ username: "", password: "" });
+    setSignup({ user_name: "", password: "" });
+    history.push(`/game`);
   };
 
   return (
@@ -43,8 +45,8 @@ function Signup() {
       <input
         type="text"
         name="signup"
-        placeholder="username"
-        value={signup.username}
+        placeholder="user_name"
+        value={signup.user_name}
         onChange={handleChange}
       />
       <input

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CommentForm from "./commentForm";
 import { Redirect } from "react-router-dom";
+import GameDetail from "./gameDetail";
 
 function Game({ higherRatedQuestion, currentUser }) {
   const initialValue = {
@@ -11,14 +12,17 @@ function Game({ higherRatedQuestion, currentUser }) {
 
   const [word, setWord] = useState(initialValue);
   const [isCorrect, setIsCorrect] = useState(false);
-  const { prompt, answers } = higherRatedQuestion;
+  // const { higherRatedQuestion.prompt, higherRatedQuestion.answers } = higherRatedQuestion;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      word.firstBox.toUpperCase() === answers[0].toUpperCase() &&
-      word.secondBox.toUpperCase() === answers[1].toUpperCase() &&
-      word.thirdBox.toUpperCase() === answers[2].toUpperCase()
+      word.firstBox.toUpperCase() ===
+        higherRatedQuestion.answers[0].toUpperCase() &&
+      word.secondBox.toUpperCase() ===
+        higherRatedQuestion.answers[1].toUpperCase() &&
+      word.thirdBox.toUpperCase() ===
+        higherRatedQuestion.answers[2].toUpperCase()
     ) {
       console.log("You're Right!!");
       setIsCorrect(!isCorrect);
@@ -38,8 +42,9 @@ function Game({ higherRatedQuestion, currentUser }) {
 
   return (
     <>
-      <form className="" onSubmit={handleSubmit}>
-        <h2>{prompt}</h2>
+      <GameDetail />
+      {/* <form className="" onSubmit={handleSubmit}>
+        <h2>{higherRatedQuestion.prompt}</h2>
         <input
           maxLength={1}
           type="text"
@@ -64,7 +69,7 @@ function Game({ higherRatedQuestion, currentUser }) {
           onChange={handleChange}
         />
         <input type="submit" id="mySubmit" value="Go" />
-      </form>
+      </form> */}
       {isCorrect ? (
         <div>
           <CommentForm
