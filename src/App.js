@@ -14,32 +14,38 @@ let routes = (
   </Switch>
 );
 console.log(routes);
+
 function App() {
   const [currentUser, setCurrentUser] = useState("");
   const [gameData, setGameData] = useState([]);
   const [higherRatedQuestion, setHighestRatedQuestion] = useState([]);
+  const [currentLevel, setCurrentLevel] = useState(1);
 
   // Fetch game data
   useEffect(() => {
     fetch("http://localhost:9292/game")
       .then((r) => r.json())
-      .then((data) => setGameData(data));
-  }, []);
+      .then((data) =>
+        setGameData(data.filter((game) => game.level === currentLevel))
+      );
+  }, [currentLevel]);
 
   // Fetch comments
   useEffect(() => {
     fetch("http://localhost:9292/comment")
       .then((r) => r.json())
       .then((comment) => highestAmongComments(comment));
-  }, [gameData]);
-  console.log(gameData.id);
-  // Get the highest rated question
+  }, [gameData, currentLevel]);
+
+  // Find the highest rated questions
   const highestAmongComments = (arr) => {
     let sortByRate = arr.sort((a, b) => b.rating - a.rating)[0];
+    console.log(sortByRate);
     let highestRated = gameData.find((item) => (item.id = sortByRate.game_id));
     setHighestRatedQuestion(highestRated);
   };
 
+  // find a current user
   const changeUser = (user) => {
     setCurrentUser(user);
   };
@@ -53,21 +59,10 @@ function App() {
         <Game
           higherRatedQuestion={higherRatedQuestion}
           currentUser={currentUser}
+          setCurrentLevel={setCurrentLevel}
+          currentLevel={currentLevel}
         />
       </Route>
-
-      {/* {currentUser === "" ? (
-        <Route exact path="/">
-          <Login changeUser={changeUser} />
-        </Route>
-      ) : (
-        <Route exact path="/game">
-          <Game
-            higherRatedQuestion={higherRatedQuestion}
-            currentUser={currentUser}
-          />
-        </Route>
-      )} */}
     </div>
   );
 }

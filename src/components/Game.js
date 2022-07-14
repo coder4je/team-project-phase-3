@@ -1,46 +1,61 @@
 import React, { useState } from "react";
 import CommentForm from "./CommentForm";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import GameDetail from "./GameDetail";
 
-function Game({ higherRatedQuestion, currentUser }) {
+function Game({
+  higherRatedQuestion,
+  currentUser,
+  currentLevel,
+  setCurrentLevel,
+}) {
   const initialValue = {
     box1: "",
     box2: "",
     box3: "",
+    box4: "",
+    box5: "",
   };
-  const i = 1;
+
   const [word, setWord] = useState(initialValue);
-  const [currentLevel, setCurrentLevel] = useState(i);
   const [isCorrect, setIsCorrect] = useState(false);
+  const history = useHistory();
+
+  // Validate user's answers
+  const answerWords = higherRatedQuestion.answers.split("");
+  const userAnswer = Object.values(word);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      word.box1.toUpperCase() ===
-        higherRatedQuestion.answers[0].toUpperCase() &&
-      word.box2.toUpperCase() ===
-        higherRatedQuestion.answers[1].toUpperCase() &&
-      word.box3.toUpperCase() === higherRatedQuestion.answers[2].toUpperCase()
-    ) {
-      console.log("You're Right!!");
+
+    const validation = (currentLevel) => {
+      for (let i = 1; i < currentLevel + 1; i++) {
+        return answerWords[i].toUpperCase() === userAnswer[i].toUpperCase();
+      }
+    };
+
+    if (validation(currentLevel) && currentLevel === 3) {
+      alert("Congratulations!! You completed all levels!");
+      history.push(`/`);
+    } else if (validation(currentLevel)) {
+      alert("You're Right!! Please leave your comment");
       setIsCorrect(!isCorrect);
     } else {
-      console.log("Try Again");
+      alert("Try Again");
     }
-    // setWord(initialValue);
     e.target.reset();
   };
 
-  console.log(word);
   const handleChange = (e) => {
     setWord({ ...word, [e.target.name]: e.target.value.toUpperCase() });
   };
 
+  // Move to next questions
   const onClickNext = () => {
-    setCurrentLevel(i + 1);
+    setCurrentLevel(currentLevel + 1);
+    history.push(`/game`);
+    setIsCorrect(!isCorrect);
   };
-  console.log(currentLevel);
 
   return (
     <>
@@ -58,7 +73,9 @@ function Game({ higherRatedQuestion, currentUser }) {
             higherRatedQuestion={higherRatedQuestion}
             currentUser={currentUser}
           />
-          <button className="nextButton" onClick={onClickNext}>NEXT</button>
+          {currentLevel < 3 ? (
+            <button onClick={onClickNext}>NEXT</button>
+          ) : null}
         </div>
       ) : null}
     </>
