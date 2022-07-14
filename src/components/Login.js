@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Signup from "./Signup";
 
-function Login({ changeUser }) {
+function Login({ setCurrentUser }) {
   const [userLogin, setUserLogin] = useState({
     user_name: "",
     password: "",
@@ -12,7 +12,6 @@ function Login({ changeUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
 
     fetch(`http://localhost:9292/user`)
       .then((r) => r.json())
@@ -21,12 +20,11 @@ function Login({ changeUser }) {
         const currentUser = data.find(
           (user) => user.user_name === userLogin.user_name
         );
-        console.log(currentUser);
         if (
           userLogin.user_name === currentUser.user_name &&
           userLogin.password === currentUser.password
         ) {
-          changeUser(currentUser);
+          setCurrentUser(currentUser);
           console.log("Success");
           history.push(`/game`);
         } else {
@@ -88,8 +86,10 @@ function Login({ changeUser }) {
         </div>
         <input className="buttonLogin" type="submit" value="Login" />
       </form>
-      <button className="buttonSign" onClick={onClick}>Sign up</button>
-      {isSignup ? <Signup /> : null}
+      <button className="buttonSign" onClick={onClick}>
+        Sign up
+      </button>
+      {isSignup ? <Signup setCurrentUser={setCurrentUser} /> : null}
     </div>
   );
 }

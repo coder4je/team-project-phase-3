@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function Signup() {
+function Signup({ setCurrentUser }) {
   const [signup, setSignup] = useState({
     user_name: "",
     password: "",
@@ -36,20 +36,23 @@ function Signup() {
         password: signup.password,
       }),
     });
+    setCurrentUser(signup);
     setSignup({ user_name: "", password: "" });
     history.push(`/game`);
   };
 
   return (
     <form className="" onSubmit={handleSubmit}>
-      <input className="signuser"
+      <input
+        className="signuser"
         type="text"
         name="signup"
         placeholder="user_name"
         value={signup.user_name}
         onChange={handleChange}
       />
-      <input className="signpassword"
+      <input
+        className="signpassword"
         type="password"
         name="password"
         placeholder="password"

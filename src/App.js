@@ -3,17 +3,16 @@ import { Route, Switch } from "react-router-dom";
 import Login from "./components/Login";
 import Game from "./components/Game";
 
-let routes = (
-  <Switch>
-    <Route exact path="/">
-      <Login />
-    </Route>
-    <Route path="/game">
-      <Game />
-    </Route>
-  </Switch>
-);
-console.log(routes);
+// let routes = (
+//   <Switch>
+//     <Route exact path="/">
+//       <Login />
+//     </Route>
+//     <Route path="/game">
+//       <Game />
+//     </Route>
+//   </Switch>
+// );
 
 function App() {
   const [currentUser, setCurrentUser] = useState("");
@@ -40,7 +39,6 @@ function App() {
   // Find the highest rated questions
   const highestAmongComments = (arr) => {
     let sortByRate = arr.sort((a, b) => b.rating - a.rating)[0];
-    console.log(sortByRate);
     let highestRated = gameData.find((item) => (item.id = sortByRate.game_id));
     setHighestRatedQuestion(highestRated);
   };
@@ -53,7 +51,7 @@ function App() {
   return (
     <div className="App">
       <Route exact path="/">
-        <Login changeUser={changeUser} />
+        <Login setCurrentUser={setCurrentUser} />
       </Route>
       <Route path="/game">
         <Game

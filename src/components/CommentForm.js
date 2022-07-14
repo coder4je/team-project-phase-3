@@ -17,7 +17,6 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
         setCurrentId(id.pop());
       });
   }, []);
-  console.log(currentId);
 
   // Edit Comment!!
 
@@ -73,11 +72,7 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     setCurrentComment(reviews);
-
-    console.log(reviews);
-    console.log(selectedNumber);
 
     fetch("http://localhost:9292/comment", {
       method: "POST",
@@ -126,9 +121,12 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
         </form>
       </div>
       <div>
-      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bubblegum+Sans" />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="//fonts.googleapis.com/css?family=Bubblegum+Sans"
+        />
         <h3>User: {currentUser.user_name}</h3>
-        <h4>#: {currentUser.id}</h4>
         <h4>Comment</h4>
         <p> {currentComment}</p>
       </div>

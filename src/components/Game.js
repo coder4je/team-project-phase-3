@@ -23,6 +23,7 @@ function Game({
 
   // Validate user's answers
   const answerWords = higherRatedQuestion.answers.split("");
+  console.log(answerWords);
   const userAnswer = Object.values(word);
 
   const handleSubmit = (e) => {
