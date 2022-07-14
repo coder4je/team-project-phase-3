@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Signup from "./signup";
+import Signup from "./Signup";
 
 function Login({ changeUser }) {
   const [userLogin, setUserLogin] = useState({
-    username: "",
+    user_name: "",
     password: "",
   });
   const [isSignup, setIsSignup] = useState(false);
@@ -15,16 +15,16 @@ function Login({ changeUser }) {
     e.preventDefault();
     console.log(e.target.value);
 
-    fetch(`http://localhost:4000/login/`)
+    fetch(`http://localhost:9292/user`)
       .then((r) => r.json())
       .then((data) => {
         setUserLogin(data);
         const currentUser = data.find(
-          (user) => user.username === userLogin.username
+          (user) => user.user_name === userLogin.user_name
         );
         console.log(currentUser);
         if (
-          userLogin.username === currentUser.username &&
+          userLogin.user_name === currentUser.user_name &&
           userLogin.password === currentUser.password
         ) {
           changeUser(currentUser);
@@ -38,7 +38,7 @@ function Login({ changeUser }) {
   };
 
   const handleChange = (e) => {
-    setUserLogin({ ...userLogin, username: e.target.value });
+    setUserLogin({ ...userLogin, user_name: e.target.value });
   };
 
   const handleChangePassword = (e) => {
@@ -58,14 +58,14 @@ function Login({ changeUser }) {
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bubblegum+Sans" />
         </h2>
         <div className="form-group">
-          <label htmlFor="login" value="username">
+          <label htmlFor="login" value="user_name">
             Username:
           </label>
           <br />
           <input
             type="text"
             name="login"
-            value={userLogin.username}
+            value={userLogin.user_name}
             onChange={handleChange}
             autoFocus={true}
           />
