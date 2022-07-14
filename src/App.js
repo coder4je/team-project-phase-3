@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import Login from "./components/login";
-import Game from "./components/game";
+import Login from "./components/Login";
+import Game from "./components/Game";
 
 let routes = (
   <Switch>

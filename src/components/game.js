@@ -1,28 +1,27 @@
 import React, { useState } from "react";
-import CommentForm from "./commentForm";
+import CommentForm from "./CommentForm";
 import { Redirect } from "react-router-dom";
-import GameDetail from "./gameDetail";
+import GameDetail from "./GameDetail";
 
 function Game({ higherRatedQuestion, currentUser }) {
   const initialValue = {
-    firstBox: "",
-    secondBox: "",
-    thirdBox: "",
+    box1: "",
+    box2: "",
+    box3: "",
   };
-
+  const i = 1;
   const [word, setWord] = useState(initialValue);
+  const [currentLevel, setCurrentLevel] = useState(i);
   const [isCorrect, setIsCorrect] = useState(false);
-  // const { higherRatedQuestion.prompt, higherRatedQuestion.answers } = higherRatedQuestion;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      word.firstBox.toUpperCase() ===
+      word.box1.toUpperCase() ===
         higherRatedQuestion.answers[0].toUpperCase() &&
-      word.secondBox.toUpperCase() ===
+      word.box2.toUpperCase() ===
         higherRatedQuestion.answers[1].toUpperCase() &&
-      word.thirdBox.toUpperCase() ===
-        higherRatedQuestion.answers[2].toUpperCase()
+      word.box3.toUpperCase() === higherRatedQuestion.answers[2].toUpperCase()
     ) {
       console.log("You're Right!!");
       setIsCorrect(!isCorrect);
@@ -32,17 +31,24 @@ function Game({ higherRatedQuestion, currentUser }) {
     setWord(initialValue);
   };
 
+  console.log(word);
   const handleChange = (e) => {
     setWord({ ...word, [e.target.name]: e.target.value.toUpperCase() });
   };
 
-  const onClickNext = (e) => {
-    return <Redirect to="/game" />;
+  const onClickNext = () => {
+    setCurrentLevel(i + 1);
   };
+  console.log(currentLevel);
 
   return (
     <>
-      <GameDetail />
+      <GameDetail
+        higherRatedQuestion={higherRatedQuestion}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        word={word}
+      />
       {/* <form className="" onSubmit={handleSubmit}>
         <h2>{higherRatedQuestion.prompt}</h2>
         <input

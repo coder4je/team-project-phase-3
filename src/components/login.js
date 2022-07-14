@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Signup from "./signup";
+import Signup from "./Signup";
 
 function Login({ changeUser }) {
   const [userLogin, setUserLogin] = useState({

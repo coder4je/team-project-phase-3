@@ -1,37 +1,34 @@
 import React, { useState } from "react";
 
-function GameDetail() {
-  const level1 = [1, 2, 3];
-  const level2 = [1, 2, 3, 4];
-  const level3 = [1, 2, 3, 4, 5];
-  const level4 = [1, 2, 3, 4, 5, 6];
-  const level5 = [1, 2, 3, 4, 5, 6, 7];
+function GameDetail({ word, higherRatedQuestion, handleChange, handleSubmit }) {
+  // const [currentLevel, setCurrentLevel] = useState("");
 
-  const [level, setLevel] = useState("");
+  console.log(word.box1);
 
-  const handleChange = (e) => {
-    console.log(e.target.value);
+  const levels = [];
+  const levelMaker = (level) => {
+    for (let i = 1; i < level + 3; i++) {
+      levels.push(`box${i}`);
+    }
   };
+  levelMaker(1);
+  console.log(levels);
 
-  const handleSubmit = (e) => {
-    console.log(e.target.value);
-  };
-
-  const generator = level1.map((element) => (
+  const generator = levels.map((element) => (
     <input
       maxLength={1}
       type="text"
       key={element}
       name={element}
-      value={level}
+      value={word.element}
       onChange={handleChange}
     />
   ));
   return (
-    <form className="" onSubmit={handleSubmit}>
-      <h2>hi</h2>
+    <form className="game-form" onSubmit={handleSubmit}>
+      <h2>Q: {higherRatedQuestion.prompt}</h2>
       {generator}
-      <input type="submit" id="mySubmit" value="Go" />
+      <input type="submit" id="mySubmit" value="Submit" />
     </form>
   );
 }
