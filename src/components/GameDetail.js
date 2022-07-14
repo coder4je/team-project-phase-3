@@ -1,12 +1,5 @@
 import React, { useState } from "react";
 
-<<<<<<< HEAD
-function GameDetail({ word, higherRatedQuestion, handleChange, handleSubmit }) {
-  // const [currentLevel, setCurrentLevel] = useState("");
-
-  console.log(word.box1);
-
-=======
 function GameDetail({
   word,
   higherRatedQuestion,
@@ -15,7 +8,6 @@ function GameDetail({
   currentLevel,
 }) {
   // Create game answer boxes
->>>>>>> d6c8fe85738d0fcc8a48fcd52c23159247224ebe
   const levels = [];
   const levelMaker = (level) => {
     for (let i = 1; i < level + 3; i++) {
