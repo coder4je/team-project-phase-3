@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 function GameDetail({
   word,
@@ -26,12 +26,11 @@ function GameDetail({
       onChange={handleChange}
     />
   ));
-
   return (
     <form className="game-form" onSubmit={handleSubmit}>
-      <h2>Q: {higherRatedQuestion.prompt}</h2>
+      <h2 className="">Q: {higherRatedQuestion.prompt}</h2>
       {generator}
-      <input type="submit" id="mySubmit" value="Submit" />
+      <input className="submitButton" type="submit" id="mySubmit" value="Submit" />
     </form>
   );
 }
