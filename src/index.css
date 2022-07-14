@@ -5,9 +5,96 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(189, 214, 234);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h2 {
+  font-family: "Bubblegum Sans";
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  border-style: outset;
+  background-image: radial-gradient(blue, lightskyblue, white );
+  margin: 60px;
+  border-radius: 5px;
+  
+  
+}
+
+ .form-group {
+  font-family: "Bubblegum Sans";
+  color: blue;
+  border-color: white;
+  padding: 10px;
+  text-align: center;
+  height: 50px;
+  border-radius: 5px;
+
+
+ 
+ 
+}
+input {
+  font-family: "Bubblegum Sans";
+ color: blue;
+ padding: 5px;
+ border-radius: 5px;
+ border-color: white;
+ text-align: center;
+ background-color: white;
+}
+
+.button1 {
+  font-family: "Bubblegum Sans";
+  color:blue;
+  padding: 5px;
+  border-radius: 5px;
+  border-color: white;
+  background-color: light;
+  display: flex;
+  
+}
+
+button {
+  font-family: "Bubblegum Sans";
+  color: blue;
+  border-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  background-image: radial-gradient(white, lightskyblue, blue );
+}
+
+div.form-group {
+
+  background-color: lightskyblue;
+  
+}
+
+
+
+.form-group1 {
+  font-family: "Bubblegum Sans";
+  color: blue;
+  padding: 10px;
+  text-align: center;
+  height: 50px;
+  border-radius: 5px;
+  background-color: lightskyblue;
+
+}
+
+.drawing {
+ width: 120px;
+ height: 120px;
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+margin-top: 20px;
+
+ 
 }
