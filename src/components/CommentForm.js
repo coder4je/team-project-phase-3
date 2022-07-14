@@ -100,21 +100,23 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
         <form onSubmit={onSubmit}>
           <label htmlFor="review">Review</label>
           <br />
-          <button onClick={onClick} value="1">
-            1
-          </button>
-          <button onClick={onClick} value="2">
-            2
-          </button>
-          <button onClick={onClick} value="3">
-            3
-          </button>
-          <button onClick={onClick} value="4">
-            4
-          </button>
-          <button onClick={onClick} value="5">
-            5
-          </button>
+          <>
+            <button onClick={onClick} value="1">
+              1
+            </button>
+            <button onClick={onClick} value="2">
+              2
+            </button>
+            <button onClick={onClick} value="3">
+              3
+            </button>
+            <button onClick={onClick} value="4">
+              4
+            </button>
+            <button onClick={onClick} value="5">
+              5
+            </button>
+          </>
           <br />
           <input
             type="text"

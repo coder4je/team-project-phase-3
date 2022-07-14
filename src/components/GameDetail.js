@@ -7,8 +7,7 @@ function GameDetail({
   handleSubmit,
   currentLevel,
 }) {
-  console.log(currentLevel);
-
+  // Create game answer boxes
   const levels = [];
   const levelMaker = (level) => {
     for (let i = 1; i < level + 3; i++) {
@@ -16,7 +15,6 @@ function GameDetail({
     }
   };
   levelMaker(currentLevel);
-  console.log(levels);
 
   const generator = levels.map((element) => (
     <input

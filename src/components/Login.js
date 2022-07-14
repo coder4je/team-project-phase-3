@@ -8,7 +8,6 @@ function Login({ changeUser }) {
     password: "",
   });
   const [isSignup, setIsSignup] = useState(false);
-
   const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -51,11 +50,18 @@ function Login({ changeUser }) {
 
   return (
     <div>
-      
-      <img className = "drawing" src="https://mariasplace.com/wp-content/uploads/2019/04/Hangman-game-played.jpg" />
+      <img
+        className="drawing"
+        src="https://mariasplace.com/wp-content/uploads/2019/04/Hangman-game-played.jpg"
+      />
       <form onSubmit={handleSubmit}>
-        <h2>Login
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bubblegum+Sans" />
+        <h2>
+          Login
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="//fonts.googleapis.com/css?family=Bubblegum+Sans"
+          />
         </h2>
         <div className="form-group">
           <label htmlFor="login" value="user_name">
