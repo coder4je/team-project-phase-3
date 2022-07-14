@@ -1,13 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
-function GameDetail({
-  word,
-  higherRatedQuestion,
-  handleChange,
-  handleSubmit,
-  currentLevel,
-}) {
-  console.log(currentLevel);
+function GameDetail({ word, higherRatedQuestion, handleChange, handleSubmit }) {
+  // const [currentLevel, setCurrentLevel] = useState("");
+
+  console.log(word.box1);
 
   const levels = [];
   const levelMaker = (level) => {
@@ -15,7 +11,7 @@ function GameDetail({
       levels.push(`box${i}`);
     }
   };
-  levelMaker(currentLevel);
+  levelMaker(1);
   console.log(levels);
 
   const generator = levels.map((element) => (
@@ -28,12 +24,11 @@ function GameDetail({
       onChange={handleChange}
     />
   ));
-
   return (
     <form className="game-form" onSubmit={handleSubmit}>
-      <h2>Q: {higherRatedQuestion.prompt}</h2>
+      <h2 className="">Q: {higherRatedQuestion.prompt}</h2>
       {generator}
-      <input type="submit" id="mySubmit" value="Submit" />
+      <input className="submitButton" type="submit" id="mySubmit" value="Submit" />
     </form>
   );
 }

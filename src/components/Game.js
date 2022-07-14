@@ -58,7 +58,7 @@ function Game({ higherRatedQuestion, currentUser }) {
             higherRatedQuestion={higherRatedQuestion}
             currentUser={currentUser}
           />
-          <button onClick={onClickNext}>NEXT</button>
+          <button className="nextButton" onClick={onClickNext}>NEXT</button>
         </div>
       ) : null}
     </>

@@ -98,3 +98,139 @@ margin-top: 20px;
 
  
 }
+.submitButton {
+color: red;
+font-family: "Bubblegum Sans";
+padding: 10px;
+margin: 10px;
+
+}
+
+
+h3 {
+  font-family: "Bubblegum Sans";
+  color: blue;
+  font-size: 25px;
+  padding: 40px;
+}
+h4 {
+  font-family: "Bubblegum Sans";
+  color: blue;
+  font-size: 25px;
+  padding: 40px;
+}
+.game-form h2 {
+  color: red;
+  background: white;
+  border-width: 10px;
+}
+.submit2 {
+  color: red;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+}
+.rate1 {
+  color:red;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+}
+.rate2 {
+  color:red;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+}
+.rate3 {
+  color:red;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+}
+.rate4 {
+  color:red;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+}
+.rate5 {
+  color:red;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+}
+.submit3 {
+  color: red;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+}
+.buttonEdit {
+  color: red;
+  background: white;
+  padding: 10px;
+  margin: 30px;
+  
+}
+.buttonDelete {
+  color: red;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+  
+}
+
+.nextButton {
+  color: red;
+  background: white;
+  border-style: double;
+  padding: 10px;
+  margin: 10px;
+  border-color: white;
+}
+
+.buttonSign {
+  color: blue;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.buttonLogin {
+  color: blue;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signpassword {
+  color: blue;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signuser {
+  color: blue;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signsubmit {
+  padding: 10px;
+  margin: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-width: 5px;
+}

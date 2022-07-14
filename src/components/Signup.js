@@ -42,21 +42,21 @@ function Signup() {
 
   return (
     <form className="" onSubmit={handleSubmit}>
-      <input
+      <input className="signuser"
         type="text"
         name="signup"
         placeholder="user_name"
         value={signup.user_name}
         onChange={handleChange}
       />
-      <input
+      <input className="signpassword"
         type="password"
         name="password"
         placeholder="password"
         value={signup.password}
         onChange={handleChangePassword}
       />
-      <input type="submit" value="Submit" />
+      <input className="signsubmit" type="submit" value="Submit" />
     </form>
   );
 }

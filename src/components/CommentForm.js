@@ -100,19 +100,19 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
         <form onSubmit={onSubmit}>
           <label htmlFor="review">Review</label>
           <br />
-          <button onClick={onClick} value="1">
+          <button className="rate1" onClick={onClick} value="1">
             1
           </button>
-          <button onClick={onClick} value="2">
+          <button className="rate2" onClick={onClick} value="2">
             2
           </button>
-          <button onClick={onClick} value="3">
+          <button className="rate3" onClick={onClick} value="3">
             3
           </button>
-          <button onClick={onClick} value="4">
+          <button className="rate4" onClick={onClick} value="4">
             4
           </button>
-          <button onClick={onClick} value="5">
+          <button className="rate5" onClick={onClick} value="5">
             5
           </button>
           <br />
@@ -122,17 +122,18 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
             value={reviews}
             onChange={onChange}
           />
-          <button>Submit</button>
+          <button className="submit3">Submit</button>
         </form>
       </div>
       <div>
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bubblegum+Sans" />
         <h3>User: {currentUser.user_name}</h3>
         <h4>#: {currentUser.id}</h4>
         <h4>Comment</h4>
         <p> {currentComment}</p>
       </div>
 
-      <button onClick={onClickEdit} value="edit">
+      <button className="buttonEdit" onClick={onClickEdit} value="edit">
         Edit
       </button>
 
@@ -144,11 +145,11 @@ function CommentForm({ higherRatedQuestion, currentUser }) {
             value={currentComment}
             onChange={onChangeEdit}
           />
-          <button>Submit</button>
+          <button className="submit2">Submit</button>
         </form>
       ) : null}
       <br />
-      <button onClick={onDelete} value="delete">
+      <button className="buttonDelete" onClick={onDelete} value="delete">
         Delete
       </button>
     </>

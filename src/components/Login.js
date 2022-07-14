@@ -80,9 +80,9 @@ function Login({ changeUser }) {
             onChange={handleChangePassword}
           />
         </div>
-        <input type="submit" value="Login" />
+        <input className="buttonLogin" type="submit" value="Login" />
       </form>
-      <button onClick={onClick}>Sign up</button>
+      <button className="buttonSign" onClick={onClick}>Sign up</button>
       {isSignup ? <Signup /> : null}
     </div>
   );
